@@ -17,23 +17,21 @@ SECTION	.text
 	global	ft_strcmp
 
 ft_strcmp:
+	xor		rax, rax
+	xor		rbx, rbx
 	xor		rcx, rcx
 .loop:
+	mov		al, byte [rdi + rcx]
 	mov		bl, byte [rsi + rcx]
-	mov		byte [rdi + rcx], bl
-	inc		rcx
+	cmp		al, 0
+	jne		.continue
 	cmp		bl, 0
-	jne		.loop
-	mov		rax, rdi
+	jne		.continue
+	xor		rax, rax
 	ret
-
-;	size_t	i;
-;	i = 0;
-;	while ((s1[i] != '\0' || s2[i] != '\0')))
-;	{
-;		if (s1[i] == s2[i])
-;			i++;
-;		else
-;			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-;	}
-;	return (0);
+.continue:
+	inc		rcx
+	cmp		bl, al
+	je		.loop
+	sub		rax, rbx
+	ret
