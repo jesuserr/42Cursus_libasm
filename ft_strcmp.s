@@ -17,8 +17,6 @@ SECTION	.text
 	global	ft_strcmp
 
 ft_strcmp:
-	xor		rax, rax
-	xor		rbx, rbx
 	xor		rcx, rcx
 .loop:
 	mov		al, byte [rdi + rcx]
@@ -33,5 +31,6 @@ ft_strcmp:
 	inc		rcx
 	cmp		bl, al
 	je		.loop
-	sub		rax, rbx
+	sub		al, bl
+	movsx	rax, al
 	ret
