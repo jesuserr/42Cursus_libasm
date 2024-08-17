@@ -10,6 +10,7 @@ extern char     *ft_strcpy(char *dst, const char *src);
 extern int      ft_strcmp(const char *s1, const char *s2);
 extern ssize_t  ft_write(int fd, const void *buf, size_t count);
 extern ssize_t  ft_read(int fd, void *buf, size_t count);
+extern char     *ft_strdup(const char *s);
 
 int main() {
     const char *str = "Hello, World!";
@@ -34,15 +35,21 @@ int main() {
 
     char *str6 = calloc(100, sizeof(char));
     char *str7 = calloc(100, sizeof(char));
-    printf("%ld\n", read(0, str6, 100));
-    printf("%s\n", str6);
-    printf("%ld\n", ft_read(0, str7, 100));
-    printf("%s\n", str7);
+    //printf("%ld\n", read(0, str6, 100));
+    //printf("%s\n", str6);
+    //printf("%ld\n", ft_read(0, str7, 100));
+    //printf("%s\n", str7);
+
+    char *str8 = strdup("Hello, World!");
+    char *str9 = ft_strdup(str8);
+    printf("%p %p %s\n", str8, str9, str9);
 
     free(str2);
     free(str3);
     free(str6);
     free(str7);
+    free(str8);
+    free(str9);
     return 0;
 }
 
