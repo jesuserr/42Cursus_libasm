@@ -9,10 +9,6 @@
 SECTION	.note.GNU-stack
 	db 0
 
-SECTION	.data
-
-SECTION	.bss
-
 SECTION	.text
 	global	ft_strcmp
 

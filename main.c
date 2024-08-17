@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <errno.h>
 
 // Declare the external function
 extern size_t   ft_strlen(const char *str);
@@ -11,19 +12,27 @@ extern ssize_t  ft_write(int fd, const void *buf, size_t count);
 
 int main() {
     const char *str = "Hello, World!";
+    size_t len = ft_strlen(str);
+    printf("Length: %zu\n\n", len);
+
     char *str2 = malloc(100);
     char *str3 = malloc(100);
-    size_t len = ft_strlen(str);
-    printf("Length: %zu\n", len);
     printf("%p %p\n", str2, ft_strcpy(str2, str));
     printf("%p %p\n", str3, strcpy(str3, str));    
     printf("lib String: %s\n", str3);
-    printf("asm String: %s\n", str2);
+    printf("asm String: %s\n\n", str2);
+
     const char *str4 = "ABJ";
     const char *str5 = "ABC";
-    printf("%d %d\n", strcmp(str4,str5), ft_strcmp(str4,str5));
-    printf("%ld\n", write(1, "Hello, World!\n", 14));
-    printf("%ld\n", ft_write(1, "Hello, World!\n", 14));
+    printf("%d %d\n\n", strcmp(str4,str5), ft_strcmp(str4,str5));
+
+    printf("%ld\n", write(-1, "Hello, World!\n", 14));
+    printf("%d, lib write error: %s\n", errno, strerror(errno));        
+    printf("%ld\n", ft_write(-1, "Hello, World!\n", 14));
+    printf("%d, lib write error: %s\n\n", errno, strerror(errno));
+
+    free(str2);
+    free(str3);
     return 0;
 }
 
