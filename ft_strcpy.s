@@ -11,10 +11,10 @@ SECTION	.text
 ft_strcpy:
 	xor		rcx, rcx
 .loop:
-	mov		bl, byte [rsi + rcx]
-	mov		byte [rdi + rcx], bl
+	mov		dl, byte [rsi + rcx]
+	mov		byte [rdi + rcx], dl
 	inc		rcx
-	cmp		bl, 0
+	cmp		dl, 0
 	jne		.loop
 	mov		rax, rdi
 	ret

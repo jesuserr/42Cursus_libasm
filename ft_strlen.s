@@ -3,7 +3,7 @@
 ;	Output -> rax = size_t
 
 SECTION	.note.GNU-stack
-	db 0
+	db 0					; non-executable stack for security reasons
 
 SECTION	.text
 	global	ft_strlen

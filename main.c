@@ -35,10 +35,10 @@ int main() {
 
     char *str6 = calloc(100, sizeof(char));
     char *str7 = calloc(100, sizeof(char));
-    //printf("%ld\n", read(0, str6, 100));
-    //printf("%s\n", str6);
-    //printf("%ld\n", ft_read(0, str7, 100));
-    //printf("%s\n", str7);
+    printf("%ld\n", read(0, str6, 100));
+    printf("%s\n", str6);
+    printf("%ld\n", ft_read(0, str7, 100));
+    printf("%s\n", str7);
 
     char *str8 = strdup("Hello, World!");
     char *str9 = ft_strdup(str8);

@@ -16,17 +16,17 @@ ft_strcmp:
 	xor		rcx, rcx
 .loop:
 	mov		al, byte [rdi + rcx]
-	mov		bl, byte [rsi + rcx]
+	mov		dl, byte [rsi + rcx]
 	cmp		al, 0
 	jne		.continue
-	cmp		bl, 0
+	cmp		dl, 0
 	jne		.continue
 	xor		rax, rax
 	ret
 .continue:
 	inc		rcx
-	cmp		bl, al
+	cmp		dl, al
 	je		.loop
-	sub		al, bl
+	sub		al, dl
 	movsx	rax, al			; al value is extended while preserving the sign
 	ret
