@@ -28,27 +28,8 @@ ft_strdup:
 	call	ft_strcpy
 	ret
 .error:
+	pop		rsi						; clear the stack on the error path
 	call	__errno_location wrt ..plt
 	mov		dword [rax], 12			; errno is ENOMEM (dword becasue an integer)
 	xor		rax, rax				; return NULL
 	ret
-
-;char *ft_strdup(const char *s) {
-;    char *dup = malloc(strlen(s) + 1);
-;    if (dup) {
-;        strcpy(dup, s);
-;    }
-;    return dup;
-;}
-
-;char	*ft_strdup(const char *s1)
-;{
-;	void	*ptr;
-;	size_t	bytes;
-;	bytes = ft_strlen (s1) + 1;
-;	ptr = (char *)malloc(bytes * (sizeof(*s1)));
-;	if (ptr == NULL)
-;		return (0);
-;	ft_memcpy (ptr, s1, bytes);
-;	return (ptr);
-;}
