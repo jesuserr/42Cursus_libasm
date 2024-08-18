@@ -1,6 +1,9 @@
 ;	char *ft_strdup(const char *s);
 ;	Input -> rdi = const char *s
 ;	Output -> rax = char *dst
+;
+;	Malloc does not set errno directly. Instead, it returns NULL to indicate
+;	an error. To set errno, we must call __errno_location and set the value
 
 SECTION	.note.GNU-stack
 	db 0
@@ -25,11 +28,9 @@ ft_strdup:
 	call	ft_strcpy
 	ret
 .error:
-	neg		rax
-	mov		rdi, rax
 	call	__errno_location wrt ..plt
-	mov		[rax], rdi
-	mov		rax, -1
+	mov		dword [rax], 12			; errno is ENOMEM (dword becasue an integer)
+	xor		rax, rax				; return NULL
 	ret
 
 ;char *ft_strdup(const char *s) {
