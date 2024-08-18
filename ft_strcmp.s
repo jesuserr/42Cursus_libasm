@@ -28,5 +28,5 @@ ft_strcmp:
 	cmp		bl, al
 	je		.loop
 	sub		al, bl
-	movsx	rax, al
+	movsx	rax, al			; al value is extended while preserving the sign
 	ret

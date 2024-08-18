@@ -4,6 +4,17 @@
 ;
 ;	Malloc does not set errno directly. Instead, it returns NULL to indicate
 ;	an error. To set errno, we must call __errno_location and set the value
+;	provoKe malloc error -> mov		rdi, 1024 * 1024 * 1024 * 1024
+;
+;	1. Caller-Saved Registers: These registers are not preserved across function
+;	calls. If the caller wants to preserve their values, it must save them
+;	before the call and restore them afterward.
+;	rax, rcx, rdx, rsi, rdi, r8, r9, r10, r11
+;
+;	2. Callee-Saved Registers: These registers must be preserved by the callee.
+;	If the callee wants to use them, it must save their values before
+;	overwriting them and restore them before returning.
+;	rbx, rbp, r12, r13, r14, r15
 
 SECTION	.note.GNU-stack
 	db 0
@@ -30,6 +41,6 @@ ft_strdup:
 .error:
 	pop		rsi						; clear the stack on the error path
 	call	__errno_location wrt ..plt
-	mov		dword [rax], 12			; errno is ENOMEM (dword becasue an integer)
+	mov		dword [rax], 12			; errno is ENOMEM (dword -> 32 bits integer)
 	xor		rax, rax				; return NULL
 	ret

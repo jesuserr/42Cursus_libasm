@@ -42,6 +42,11 @@ int main() {
 
     char *str8 = strdup("Hello, World!");
     char *str9 = ft_strdup(str8);
+    if (!str9)
+    {
+        printf("%d, %s\n\n", errno, strerror(errno));
+        exit(1);
+    }
     printf("%p %p %s\n", str8, str9, str9);
 
     free(str2);
