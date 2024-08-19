@@ -13,20 +13,18 @@ SECTION	.text
 	global	ft_strcmp
 
 ft_strcmp:
-	xor		rcx, rcx
-.loop:
-	mov		al, byte [rdi + rcx]
-	mov		dl, byte [rsi + rcx]
-	cmp		al, 0
-	jne		.continue
-	cmp		dl, 0
-	jne		.continue
 	xor		rax, rax
-	ret
-.continue:
-	inc		rcx
+	xor		rdx, rdx
+.loop:
+	mov		al, [rdi]
+	mov		dl, [rsi]
+	cmp		al, 0
+	je		.end
 	cmp		dl, al
-	je		.loop
-	sub		al, dl
-	movsx	rax, al			; al value is extended while preserving the sign
+	jne		.end
+	inc		rdi
+	inc		rsi
+	jmp		.loop
+.end:
+	sub		rax, rdx
 	ret

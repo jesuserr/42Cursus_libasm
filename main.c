@@ -24,8 +24,10 @@ int main() {
     printf("lib String: %s\n", str3);
     printf("asm String: %s\n\n", str2);
 
-    const char *str4 = "ABJ";
-    const char *str5 = "ABC";
+    //const char *str4 = "ABJ";
+    //const char *str5 = "ABC";
+    const char *str4 = "\xfe";
+    const char *str5 = "\xfe\xff";
     printf("%d %d\n\n", strcmp(str4,str5), ft_strcmp(str4,str5));
 
     printf("%ld\n", write(1, "Hello, World!\n", 14));
