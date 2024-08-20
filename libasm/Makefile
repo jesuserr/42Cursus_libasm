@@ -7,7 +7,7 @@ OBJS = $(SRCS:.s=.o)
 RM = rm -f
 NASM_FLAGS = -f elf64
 
-%.o: %.s
+%.o: %.s libasm.h
 	nasm $(NASM_FLAGS) $< -o $@
 
 all: $(NAME)
