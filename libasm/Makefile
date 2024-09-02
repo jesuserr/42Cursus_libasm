@@ -7,7 +7,7 @@ OBJS = $(SRCS:.s=.o)
 RM = rm -f
 NASM_FLAGS = -f elf64
 
-%.o: %.s libasm.h Mskefile
+%.o: %.s libasm.h Makefile
 	nasm $(NASM_FLAGS) $< -o $@
 
 all: $(NAME)
