@@ -6,13 +6,21 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:15:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/09/04 17:25:43 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:14:13 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "../libasm/libasm.h"
+
+void	ft_free_and_exit(char *src, int test_num)
+{
+	if (src)
+		free(src);
+	printf("Test %02d: \033[0;31mKO\033[0m\n", test_num);
+	exit(1);
+}
 
 void	ft_read_tester(void)
 {
@@ -38,7 +46,11 @@ void	ft_five_functions_tester(const char *test_str)
 	static int	i = 1;
 
 	src = ft_strdup(test_str);
+	if (!src)
+		ft_free_and_exit(NULL, i);
 	dst = malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (!dst)
+		ft_free_and_exit(src, i);
 	dst = ft_strcpy(dst, src);
 	printf("Test %02d: ", i++);
 	fflush(stdout);
