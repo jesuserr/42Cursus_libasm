@@ -15,7 +15,7 @@ all: makelibasm $(NAME_TESTER)
 makelibasm:
 	@make --no-print-directory -C $(LIBASM_DIR)
 
-%.o: %.c
+%.o: %.c Makefile
 	$(CC) $(CFLAGS) -MMD $(INCLUDE) -c $< -o $@
 
 $(NAME_TESTER): $(OBJS_TESTER) $(LIBASM_DIR)$(LIBASM)
