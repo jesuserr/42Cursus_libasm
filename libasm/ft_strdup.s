@@ -2,6 +2,11 @@
 ;	Input -> rdi = const char *s
 ;	Output -> rax = char *dst
 ;
+;	The standard strdup function does not check if its argument is NULL.
+;	If you pass NULL to strdup, it will likely cause a segmentation fault
+;	because it will attempt to dereference the NULL pointer. Therefore not
+;	implemented in this function either.
+;
 ;	Malloc does not set errno directly. Instead, it returns NULL to indicate
 ;	an error. To set errno, we must call __errno_location and set the value
 ;	provoKe malloc error -> mov		rdi, 1024 * 1024 * 1024 * 1024
