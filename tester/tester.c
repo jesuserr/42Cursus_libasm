@@ -6,40 +6,46 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:15:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/09/04 16:22:07 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:25:43 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "../libasm/libasm.h"
 
 void	ft_read_tester(void)
 {
-	char	buffer[1];
+	char	buffer[1024];
 	ssize_t	bytes_read;
 
 	while (1)
 	{
 		ft_write(1, "\033[H\033[J", 6);
-		ft_write(1, "Press Enter to start (testing ft_read...)\n", 42);
-		bytes_read = ft_read(0, buffer, 1);
-		if (bytes_read == 1 && buffer[0] == '\n')
+		ft_write(1, "Type 'start' to begin (testing ft_read...)\n", 43);
+		bytes_read = ft_read(0, buffer, 1023);
+		buffer[bytes_read] = '\0';
+		if (bytes_read == 6 && ft_strcmp(buffer, "start\n") == 0)
 			break ;
 	}
+	ft_write(1, "Test 01: \033[0;32mOK\033[0m\n", 23);
 }
 
 void	ft_five_functions_tester(const char *test_str)
 {
-	char	*dst;
-	char	*src;
+	char		*dst;
+	char		*src;
+	static int	i = 1;
 
 	src = ft_strdup(test_str);
 	dst = malloc(sizeof(char) * (ft_strlen(src) + 1));
 	dst = ft_strcpy(dst, src);
+	printf("Test %02d: ", i++);
+	fflush(stdout);
 	if (ft_strcmp(src, dst) != 0)
-		ft_write(1, "\033[0;31mKO\033[0m ", 15);
+		ft_write(1, "\033[0;31mKO\033[0m\n", 14);
 	else
-		ft_write(1, "\033[0;32mOK\033[0m ", 15);
+		ft_write(1, "\033[0;32mOK\033[0m\n", 14);
 	free (dst);
 	free (src);
 }
