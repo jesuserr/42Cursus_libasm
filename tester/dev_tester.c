@@ -42,11 +42,12 @@ int	main(void)
 
     printf("\033[0;32mTest ft_strcmp\033[0m\n");
     const char *str4 = "ABJ";
-    const char *str5 = "ABC";    
+    const char *str5 = "ABC";
+    printf("Strings: %s and %s\n", str4, str5);
     printf("Standard function -> Difference: %d \n", strcmp(str4,str5));
     printf("Assembly function -> Difference: %d \n\n", ft_strcmp(str4, str5));
 
-    printf("\033[0;32mTest ft_write\033[0m\n");
+    printf("\033[0;32mTest ft_write (to terminal)\033[0m\n");
     printf("Standard function -> Printed: %ld\n", write(1, "Hello, World!\n", 14));
     printf("Standard function -> Error number: %d\n", errno);
     printf("Standard function -> Error message: %s\n", strerror(errno));
@@ -64,7 +65,7 @@ int	main(void)
     printf("Assembly function -> Error message: %s\n\n", strerror(errno));
     close(fd);
 
-    printf("\033[0;32mTest ft_read\033[0m\n");
+    printf("\033[0;32mTest ft_read (from terminal)\033[0m\n");
     char *str6 = calloc(100, sizeof(char));
     char *str7 = calloc(100, sizeof(char));
     printf("Enter a text for comparison:\n");
